@@ -31,7 +31,7 @@ export default function Quiz() {
   }
   function scores(identify, values) {
     questionz.map((prev) => {
-      if (prev.id === identify && prev.correct == values) {
+      if (prev.id === identify && prev.correct === values) {
         setCorrect((prev) => prev + 1);
       }
     });
@@ -62,9 +62,8 @@ export default function Quiz() {
   return (
     <div className="container px-16 py-4 overflow-x-hidden mx-auto bg-[#F5F7FB] w-[550px] relative ">
       <img src={Top} alt="" className="absolute right-0 top-0 w-10 h-10" />
-      {questionz.length == 0
-        ? "Loading"
-        : questionz.map((quizzes) => (
+      {questionz.length > 0
+        ? questionz.map((quizzes) => (
             <Question
               key={quizzes.id}
               question={quizzes.quiz}
@@ -75,19 +74,20 @@ export default function Quiz() {
               correct={quizzes.correct}
               checked={checked}
             />
-          ))}
+          ))
+        : "Loading"}
 
       <div className="flex items-center font-bold text-[#293264] justify-center w-full p-2">
         {checked ? `You scored ${correct}/5 correct scores` : ""}
-        {questionz.length == 0 ? (
-          ""
-        ) : (
+        {questionz.length > 0 ? (
           <button
             onClick={checked ? handleStart : handleAnswer}
             className="rounded-md px-4 py-2 text-slate-50 w-1/2 bg-[#4D5B9E] hover:ease-in-out duration-150 hover:bg-[#4D5B9E]/90"
           >
             {checked ? "Play Again" : "Check answers"}
           </button>
+        ) : (
+          ""
         )}
       </div>
       <img src={Bottom} alt="" className="absolute bottom-0 left-0 w-10 h-10" />
