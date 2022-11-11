@@ -20,10 +20,10 @@ export default function Question({
               id={id}
               className={
                 checked &&
-                answers.some((item) => item == correct) &&
-                correct == answer
+                answers.some((item) => item === correct) &&
+                correct === answer
                   ? "bg-[#94D7A2] text-[#293264] shadow-inner px-2 cursor-pointer text-xs text-center rounded-md"
-                  : checked && selection != correct && selection == answer
+                  : checked && selection !== correct && selection === answer
                   ? "bg-[#F8BCBC] text-[#293264] shadow-inner px-2 cursor-pointer text-xs text-center rounded-md"
                   : selection === answer
                   ? "bg-[#D6DBF5] text-[#293264] shadow-inner px-2 cursor-pointer text-xs text-center rounded-md"
